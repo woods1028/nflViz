@@ -6,7 +6,7 @@
 #'
 #' @importFrom dplyr select mutate rowwise ungroup
 
-play_detailer <- function(plays_clean) {
+play_detailer <- function(plays_clean, games) {
 
   plays_clean %>%
     select(-season) %>%

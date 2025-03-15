@@ -4,7 +4,7 @@
 \alias{play_detailer}
 \title{Title}
 \usage{
-play_detailer(plays_clean)
+play_detailer(plays_clean, games)
 }
 \arguments{
 \item{plays_clean}{}

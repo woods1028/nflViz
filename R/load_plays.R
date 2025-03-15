@@ -4,7 +4,7 @@
 #'
 #' @return plays_clean
 #' @export
-#' @importFrom purrr map
+#' @importFrom purrr map reduce
 #' @importFrom dplyr mutate bind_rows select
 #' @importFrom stringr str_detect str_extract
 
