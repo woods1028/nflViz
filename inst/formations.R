@@ -1,3 +1,5 @@
+ds <- load_ds()
+
 spots <- ds %>%
   filter(team == "football") %>%
   mutate(across(c(playId,gameId,frameId),as.integer)) %>%

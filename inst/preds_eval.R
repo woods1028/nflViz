@@ -2,9 +2,6 @@ hierarchy_preds <- "preds/hierarchy_preds_20250315.csv" %>%
   read_csv %>%
   mutate(across(actual,~data.table::setattr(factor(.),"levels",c("2-High","1-High"))))
 
-# formations_by_clip_id <- "formations_by_clip_id.csv" %>%
-#  read_csv
-
 formations_by_play_id <- "formations_by_play_id.csv" %>%
   read_csv
 
