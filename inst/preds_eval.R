@@ -31,15 +31,22 @@ accuracy_by_formation <- hierarchy_preds %>%
     .groups = "drop"
   ) %>%
   mutate(pct = correct/count) %>%
-  arrange(desc(count)) %>%
-  filter(count > 100)
+  group_by(formation) %>%
+  filter(sum(count) > 500) %>%
+  ungroup %>%
+  filter(count > 20)
 
 accuracy_by_formation %>%
   filter(backs %in% c(0,1)) %>%
-  ggplot(mapping = aes(x = formation,y = pct,size = count,color = actual))+
-  geom_point()+
-  theme(axis.text.x = element_text(size = 10))+
-  scale_size_continuous(range = c(2,13))
+  ggplot(mapping = aes(x = formation,y = pct,fill = actual,width = count/1000))+
+#  geom_bar(stat = "identity",position = "dodge")+#
+  geom_col(position = position_dodge2(preserve = "single"),color = "black")+
+  theme(axis.text.x = element_text(size = 10),
+        axis.title.y = element_text(angle = 0,vjust = .5))+
+  scale_y_continuous(limits = c(.7,1),oob = scales::rescale_none,
+                     labels = scales::percent)+
+  labs(x = "Formation",fill = "",y = "Accuracy")+
+  scale_fill_manual(values = c("1-High" = "deepskyblue","2-High" = "firebrick2"))
 
 accuracy_by_formation %>%
   group_by(actual,backs) %>%
